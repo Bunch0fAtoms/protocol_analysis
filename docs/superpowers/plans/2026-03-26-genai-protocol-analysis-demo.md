@@ -67,7 +67,7 @@ Confirm which workspace we're connected to and that we have permissions to creat
 # MAGIC Shared configuration for all demo notebooks.
 
 # Catalog and schema — change these to match your workspace
-CATALOG = "gmr_demo"
+CATALOG = "morgancatalog"
 SCHEMA = "protocol_analysis"
 VOLUME_PATH = f"/Volumes/{CATALOG}/{SCHEMA}/source_data"
 
@@ -97,9 +97,9 @@ GOLD_ANALYTICS_SUMMARY = f"{CATALOG}.{SCHEMA}.gold_analytics_summary"
 
 Use `execute_sql` to run:
 ```sql
-CREATE CATALOG IF NOT EXISTS gmr_demo;
-CREATE SCHEMA IF NOT EXISTS gmr_demo.protocol_analysis;
-CREATE VOLUME IF NOT EXISTS gmr_demo.protocol_analysis.source_data;
+CREATE CATALOG IF NOT EXISTS morgancatalog;
+CREATE SCHEMA IF NOT EXISTS morgancatalog.protocol_analysis;
+CREATE VOLUME IF NOT EXISTS morgancatalog.protocol_analysis.source_data;
 ```
 
 - [ ] **Step 4: Verify the model endpoints are available**
@@ -153,7 +153,7 @@ Write each protocol as a CSV to `{VOLUME_PATH}/protocols/{protocol_name}.csv`.
 - [ ] **Step 3: Verify protocol files in volume**
 
 ```sql
-LIST '/Volumes/gmr_demo/protocol_analysis/source_data/protocols/'
+LIST '/Volumes/morgancatalog/protocol_analysis/source_data/protocols/'
 ```
 Confirm 10 CSV files are present.
 
@@ -185,7 +185,7 @@ Write to `{VOLUME_PATH}/mappings/protocol_mapping.csv`.
 - [ ] **Step 3: Verify mapping file**
 
 ```sql
-LIST '/Volumes/gmr_demo/protocol_analysis/source_data/mappings/'
+LIST '/Volumes/morgancatalog/protocol_analysis/source_data/mappings/'
 ```
 
 ---
@@ -226,7 +226,7 @@ Write to `{VOLUME_PATH}/calls/call_logs_batch_001.csv` with one row per Q&A entr
 
 ```sql
 SELECT COUNT(*) as total_rows, COUNT(DISTINCT call_id) as total_calls
-FROM read_files('/Volumes/gmr_demo/protocol_analysis/source_data/calls/')
+FROM read_files('/Volumes/morgancatalog/protocol_analysis/source_data/calls/')
 ```
 Expected: ~500 distinct call_ids, 3,500-7,500 total rows.
 
@@ -256,7 +256,7 @@ Use `@databricks-ai-dev-kit:databricks-spark-declarative-pipelines` skill for co
 -- Bronze: Ingest call logs
 CREATE OR REFRESH STREAMING TABLE bronze_call_logs
 AS SELECT * FROM STREAM read_files(
-  '/Volumes/gmr_demo/protocol_analysis/source_data/calls/',
+  '/Volumes/morgancatalog/protocol_analysis/source_data/calls/',
   format => 'csv',
   header => true
 );
@@ -264,7 +264,7 @@ AS SELECT * FROM STREAM read_files(
 -- Bronze: Ingest protocols
 CREATE OR REFRESH STREAMING TABLE bronze_protocols
 AS SELECT * FROM STREAM read_files(
-  '/Volumes/gmr_demo/protocol_analysis/source_data/protocols/',
+  '/Volumes/morgancatalog/protocol_analysis/source_data/protocols/',
   format => 'csv',
   header => true
 );
@@ -272,7 +272,7 @@ AS SELECT * FROM STREAM read_files(
 -- Bronze: Ingest protocol mapping
 CREATE OR REFRESH STREAMING TABLE bronze_protocol_mapping
 AS SELECT * FROM STREAM read_files(
-  '/Volumes/gmr_demo/protocol_analysis/source_data/mappings/',
+  '/Volumes/morgancatalog/protocol_analysis/source_data/mappings/',
   format => 'csv',
   header => true
 );
@@ -316,7 +316,7 @@ JOIN bronze_protocol_mapping m
 
 Use `@databricks-ai-dev-kit:databricks-spark-declarative-pipelines` or the create_pipeline MCP tool. Configure:
 - Pipeline name: `gmr_protocol_analysis_pipeline`
-- Target catalog: `gmr_demo`
+- Target catalog: `morgancatalog`
 - Target schema: `protocol_analysis`
 - Source notebook: the uploaded `02_ldp_pipeline.sql`
 - Serverless compute
@@ -326,21 +326,21 @@ Use `@databricks-ai-dev-kit:databricks-spark-declarative-pipelines` or the creat
 Trigger a pipeline update. After completion, verify:
 
 ```sql
-SELECT COUNT(*) FROM gmr_demo.protocol_analysis.bronze_call_logs;
+SELECT COUNT(*) FROM morgancatalog.protocol_analysis.bronze_call_logs;
 -- Expected: ~3,500-7,500 rows
 
-SELECT COUNT(*) FROM gmr_demo.protocol_analysis.bronze_protocols;
+SELECT COUNT(*) FROM morgancatalog.protocol_analysis.bronze_protocols;
 -- Expected: ~470 rows (sum of all protocol files)
 
-SELECT COUNT(*) FROM gmr_demo.protocol_analysis.silver_calls_deidentified;
+SELECT COUNT(*) FROM morgancatalog.protocol_analysis.silver_calls_deidentified;
 -- Expected: same as bronze_call_logs, with PII redacted
 
-SELECT COUNT(*) FROM gmr_demo.protocol_analysis.silver_calls_routed;
+SELECT COUNT(*) FROM morgancatalog.protocol_analysis.silver_calls_routed;
 -- Expected: same as deidentified, with new_protocol_name added
 
 -- Verify PII is redacted
 SELECT caller_name, caller_phone, caller_address
-FROM gmr_demo.protocol_analysis.silver_calls_deidentified LIMIT 5;
+FROM morgancatalog.protocol_analysis.silver_calls_deidentified LIMIT 5;
 -- Expected: all show '[REDACTED]'
 ```
 
@@ -408,10 +408,10 @@ Upload to workspace, attach to a SQL warehouse or cluster, run.
 - [ ] **Step 3: Verify output**
 
 ```sql
-SELECT COUNT(*) FROM gmr_demo.protocol_analysis.silver_call_narratives;
+SELECT COUNT(*) FROM morgancatalog.protocol_analysis.silver_call_narratives;
 -- Expected: 500 rows (one per call)
 
-SELECT call_id, LEFT(narrative, 200) FROM gmr_demo.protocol_analysis.silver_call_narratives LIMIT 3;
+SELECT call_id, LEFT(narrative, 200) FROM morgancatalog.protocol_analysis.silver_call_narratives LIMIT 3;
 -- Verify narratives are coherent and preserve caller wording
 ```
 
@@ -507,11 +507,11 @@ w.vector_search_indexes.create_index(
 - [ ] **Step 3: Verify the protocol chunks table**
 
 ```sql
-SELECT COUNT(*) FROM gmr_demo.protocol_analysis.silver_protocol_chunks;
+SELECT COUNT(*) FROM morgancatalog.protocol_analysis.silver_protocol_chunks;
 -- Expected: ~470 rows
 
 SELECT chunk_id, protocol_name, row_number, LEFT(chunk_text, 100)
-FROM gmr_demo.protocol_analysis.silver_protocol_chunks
+FROM morgancatalog.protocol_analysis.silver_protocol_chunks
 WHERE protocol_name = 'Chest Pain'
 ORDER BY row_number
 LIMIT 5;
@@ -692,18 +692,18 @@ This will take the longest — 500 calls x LLM execution. Monitor for rate limit
 - [ ] **Step 3: Verify output**
 
 ```sql
-SELECT COUNT(*) FROM gmr_demo.protocol_analysis.gold_protocol_execution;
+SELECT COUNT(*) FROM morgancatalog.protocol_analysis.gold_protocol_execution;
 -- Expected: 500 rows
 
 SELECT
   COUNT(*) AS total,
   SUM(CASE WHEN is_ambiguous THEN 1 ELSE 0 END) AS ambiguous,
   SUM(CASE WHEN NOT is_replayable THEN 1 ELSE 0 END) AS non_replayable
-FROM gmr_demo.protocol_analysis.gold_protocol_execution;
+FROM morgancatalog.protocol_analysis.gold_protocol_execution;
 -- Expected: ~75 ambiguous, ~25 non-replayable
 
 SELECT call_id, final_disposition, is_ambiguous, triggering_row
-FROM gmr_demo.protocol_analysis.gold_protocol_execution LIMIT 5;
+FROM morgancatalog.protocol_analysis.gold_protocol_execution LIMIT 5;
 ```
 
 ---
@@ -765,11 +765,11 @@ FROM raw_eval
 - [ ] **Step 3: Verify output**
 
 ```sql
-SELECT COUNT(*) FROM gmr_demo.protocol_analysis.gold_evaluation_summaries;
+SELECT COUNT(*) FROM morgancatalog.protocol_analysis.gold_evaluation_summaries;
 -- Expected: 500
 
 SELECT call_id, cross_protocol_flag, LEFT(evaluation_text, 150)
-FROM gmr_demo.protocol_analysis.gold_evaluation_summaries
+FROM morgancatalog.protocol_analysis.gold_evaluation_summaries
 WHERE cross_protocol_flag = true
 LIMIT 5;
 ```
@@ -846,17 +846,17 @@ FROM raw_assessment
 SELECT
   dispatch_was_necessary,
   COUNT(*) AS cnt
-FROM gmr_demo.protocol_analysis.gold_care_assessment
+FROM morgancatalog.protocol_analysis.gold_care_assessment
 GROUP BY dispatch_was_necessary;
 
 SELECT
   vehicle_tier_match,
   COUNT(*) AS cnt
-FROM gmr_demo.protocol_analysis.gold_care_assessment
+FROM morgancatalog.protocol_analysis.gold_care_assessment
 GROUP BY vehicle_tier_match;
 
 SELECT AVG(quality_score) AS avg_quality
-FROM gmr_demo.protocol_analysis.gold_care_assessment;
+FROM morgancatalog.protocol_analysis.gold_care_assessment;
 ```
 
 ---
@@ -873,7 +873,7 @@ FROM gmr_demo.protocol_analysis.gold_care_assessment;
 -- MAGIC %md
 -- MAGIC # Step 8: Analytics Aggregation
 
-CREATE OR REPLACE TABLE gmr_demo.protocol_analysis.gold_analytics_summary AS
+CREATE OR REPLACE TABLE morgancatalog.protocol_analysis.gold_analytics_summary AS
 SELECT
   e.complaint_type,
   e.protocol_name,
@@ -899,9 +899,9 @@ SELECT
   ROUND(AVG(a.quality_score), 2) AS avg_quality_score,
   -- Cross-protocol
   SUM(CASE WHEN ev.cross_protocol_flag THEN 1 ELSE 0 END) AS cross_protocol_flags
-FROM gmr_demo.protocol_analysis.gold_protocol_execution e
-JOIN gmr_demo.protocol_analysis.gold_care_assessment a ON e.call_id = a.call_id
-JOIN gmr_demo.protocol_analysis.gold_evaluation_summaries ev ON e.call_id = ev.call_id
+FROM morgancatalog.protocol_analysis.gold_protocol_execution e
+JOIN morgancatalog.protocol_analysis.gold_care_assessment a ON e.call_id = a.call_id
+JOIN morgancatalog.protocol_analysis.gold_evaluation_summaries ev ON e.call_id = ev.call_id
 GROUP BY e.complaint_type, e.protocol_name;
 ```
 
@@ -910,7 +910,7 @@ GROUP BY e.complaint_type, e.protocol_name;
 - [ ] **Step 3: Verify**
 
 ```sql
-SELECT * FROM gmr_demo.protocol_analysis.gold_analytics_summary ORDER BY total_calls DESC;
+SELECT * FROM morgancatalog.protocol_analysis.gold_analytics_summary ORDER BY total_calls DESC;
 -- Expected: 10 rows (one per protocol), totaling 500 calls
 ```
 
@@ -975,7 +975,7 @@ print(f"Exported {flagged_df.count()} flagged records to {export_path}")
 - [ ] **Step 3: Verify export file exists**
 
 ```sql
-LIST '/Volumes/gmr_demo/protocol_analysis/source_data/exports/';
+LIST '/Volumes/morgancatalog/protocol_analysis/source_data/exports/';
 ```
 
 ---
@@ -993,25 +993,25 @@ Test each query against the gold tables to make sure they return valid data. Run
 **Page 1 — Executive Overview:**
 ```sql
 -- Total calls (counter)
-SELECT COUNT(*) AS total_calls FROM gmr_demo.protocol_analysis.gold_protocol_execution;
+SELECT COUNT(*) AS total_calls FROM morgancatalog.protocol_analysis.gold_protocol_execution;
 
 -- Disposition distribution (bar chart)
 SELECT final_disposition, COUNT(*) AS cnt
-FROM gmr_demo.protocol_analysis.gold_protocol_execution
+FROM morgancatalog.protocol_analysis.gold_protocol_execution
 WHERE final_disposition IS NOT NULL
 GROUP BY final_disposition ORDER BY final_disposition;
 
 -- Ambiguity rate (gauge)
 SELECT ROUND(100.0 * SUM(CASE WHEN is_ambiguous THEN 1 ELSE 0 END) / COUNT(*), 1) AS ambiguity_rate
-FROM gmr_demo.protocol_analysis.gold_protocol_execution;
+FROM morgancatalog.protocol_analysis.gold_protocol_execution;
 
 -- Replayability rate (gauge)
 SELECT ROUND(100.0 * SUM(CASE WHEN is_replayable THEN 1 ELSE 0 END) / COUNT(*), 1) AS replayability_rate
-FROM gmr_demo.protocol_analysis.gold_protocol_execution;
+FROM morgancatalog.protocol_analysis.gold_protocol_execution;
 
 -- Non-replayable calls with top reasons (table)
 SELECT non_replayable_reason, COUNT(*) AS cnt
-FROM gmr_demo.protocol_analysis.gold_protocol_execution
+FROM morgancatalog.protocol_analysis.gold_protocol_execution
 WHERE is_replayable = false
 GROUP BY non_replayable_reason ORDER BY cnt DESC;
 ```
@@ -1020,27 +1020,27 @@ GROUP BY non_replayable_reason ORDER BY cnt DESC;
 ```sql
 -- Dispatch necessity breakdown (pie chart)
 SELECT dispatch_was_necessary, COUNT(*) AS cnt
-FROM gmr_demo.protocol_analysis.gold_care_assessment
+FROM morgancatalog.protocol_analysis.gold_care_assessment
 GROUP BY dispatch_was_necessary;
 
 -- Unnecessary dispatch by complaint type (bar chart)
 SELECT e.complaint_type, COUNT(*) AS unnecessary
-FROM gmr_demo.protocol_analysis.gold_care_assessment a
-JOIN gmr_demo.protocol_analysis.gold_protocol_execution e ON a.call_id = e.call_id
+FROM morgancatalog.protocol_analysis.gold_care_assessment a
+JOIN morgancatalog.protocol_analysis.gold_protocol_execution e ON a.call_id = e.call_id
 WHERE a.dispatch_was_necessary = 'no'
 GROUP BY e.complaint_type ORDER BY unnecessary DESC;
 
 -- Calls that could have been phone-resolved (drill-down table)
 SELECT e.call_id, e.complaint_type, e.protocol_name, e.final_disposition,
        a.dispatch_necessity_reasoning, a.cost_impact_flag
-FROM gmr_demo.protocol_analysis.gold_care_assessment a
-JOIN gmr_demo.protocol_analysis.gold_protocol_execution e ON a.call_id = e.call_id
+FROM morgancatalog.protocol_analysis.gold_care_assessment a
+JOIN morgancatalog.protocol_analysis.gold_protocol_execution e ON a.call_id = e.call_id
 WHERE a.dispatch_was_necessary = 'no';
 
 -- Estimated cost savings (counter) — assumes ~$500 avg cost per unnecessary dispatch
 SELECT COUNT(*) AS unnecessary_dispatches,
        COUNT(*) * 500 AS estimated_savings_usd
-FROM gmr_demo.protocol_analysis.gold_care_assessment
+FROM morgancatalog.protocol_analysis.gold_care_assessment
 WHERE dispatch_was_necessary = 'no';
 ```
 
@@ -1048,20 +1048,20 @@ WHERE dispatch_was_necessary = 'no';
 ```sql
 -- Actual vs recommended tier (stacked bar)
 SELECT vehicle_tier_match, COUNT(*) AS cnt
-FROM gmr_demo.protocol_analysis.gold_care_assessment
+FROM morgancatalog.protocol_analysis.gold_care_assessment
 GROUP BY vehicle_tier_match;
 
 -- Over-dispatch rate by protocol (bar chart)
 SELECT e.protocol_name, COUNT(*) AS over_dispatched
-FROM gmr_demo.protocol_analysis.gold_care_assessment a
-JOIN gmr_demo.protocol_analysis.gold_protocol_execution e ON a.call_id = e.call_id
+FROM morgancatalog.protocol_analysis.gold_care_assessment a
+JOIN morgancatalog.protocol_analysis.gold_protocol_execution e ON a.call_id = e.call_id
 WHERE a.vehicle_tier_match = 'over_dispatched'
 GROUP BY e.protocol_name ORDER BY over_dispatched DESC;
 
 -- Under-dispatch rate by protocol (bar chart — safety concern)
 SELECT e.protocol_name, COUNT(*) AS under_dispatched
-FROM gmr_demo.protocol_analysis.gold_care_assessment a
-JOIN gmr_demo.protocol_analysis.gold_protocol_execution e ON a.call_id = e.call_id
+FROM morgancatalog.protocol_analysis.gold_care_assessment a
+JOIN morgancatalog.protocol_analysis.gold_protocol_execution e ON a.call_id = e.call_id
 WHERE a.vehicle_tier_match = 'under_dispatched'
 GROUP BY e.protocol_name ORDER BY under_dispatched DESC;
 
@@ -1069,8 +1069,8 @@ GROUP BY e.protocol_name ORDER BY under_dispatched DESC;
 SELECT e.call_id, e.complaint_type, e.protocol_name, e.final_disposition,
        a.correct_vehicle_tier, a.actual_vehicle_tier, a.vehicle_tier_match,
        a.quality_findings
-FROM gmr_demo.protocol_analysis.gold_care_assessment a
-JOIN gmr_demo.protocol_analysis.gold_protocol_execution e ON a.call_id = e.call_id
+FROM morgancatalog.protocol_analysis.gold_care_assessment a
+JOIN morgancatalog.protocol_analysis.gold_protocol_execution e ON a.call_id = e.call_id
 WHERE a.vehicle_tier_match != 'match';
 ```
 
@@ -1078,26 +1078,26 @@ WHERE a.vehicle_tier_match != 'match';
 ```sql
 -- Quality score distribution (histogram)
 SELECT quality_score, COUNT(*) AS cnt
-FROM gmr_demo.protocol_analysis.gold_care_assessment
+FROM morgancatalog.protocol_analysis.gold_care_assessment
 GROUP BY quality_score ORDER BY quality_score;
 
 -- Average quality score by protocol (bar chart)
 SELECT e.protocol_name, ROUND(AVG(a.quality_score), 2) AS avg_quality
-FROM gmr_demo.protocol_analysis.gold_care_assessment a
-JOIN gmr_demo.protocol_analysis.gold_protocol_execution e ON a.call_id = e.call_id
+FROM morgancatalog.protocol_analysis.gold_care_assessment a
+JOIN morgancatalog.protocol_analysis.gold_protocol_execution e ON a.call_id = e.call_id
 GROUP BY e.protocol_name ORDER BY avg_quality;
 
 -- Cross-protocol flags (table)
 SELECT e.call_id, e.complaint_type, e.protocol_name, ev.suggested_protocol, ev.evaluation_text
-FROM gmr_demo.protocol_analysis.gold_evaluation_summaries ev
-JOIN gmr_demo.protocol_analysis.gold_protocol_execution e ON ev.call_id = e.call_id
+FROM morgancatalog.protocol_analysis.gold_evaluation_summaries ev
+JOIN morgancatalog.protocol_analysis.gold_protocol_execution e ON ev.call_id = e.call_id
 WHERE ev.cross_protocol_flag = true;
 
 -- Lowest quality calls with audit trails (detail table)
 SELECT e.call_id, e.complaint_type, e.protocol_name, a.quality_score,
        a.quality_findings, e.audit_trail
-FROM gmr_demo.protocol_analysis.gold_care_assessment a
-JOIN gmr_demo.protocol_analysis.gold_protocol_execution e ON a.call_id = e.call_id
+FROM morgancatalog.protocol_analysis.gold_care_assessment a
+JOIN morgancatalog.protocol_analysis.gold_protocol_execution e ON a.call_id = e.call_id
 WHERE a.quality_score <= 2
 ORDER BY a.quality_score;
 ```
@@ -1175,16 +1175,16 @@ Trigger the job and monitor. This is the full demo run.
 
 Run a final validation:
 ```sql
-SELECT 'bronze_call_logs' AS tbl, COUNT(*) AS cnt FROM gmr_demo.protocol_analysis.bronze_call_logs
-UNION ALL SELECT 'bronze_protocols', COUNT(*) FROM gmr_demo.protocol_analysis.bronze_protocols
-UNION ALL SELECT 'silver_calls_deidentified', COUNT(*) FROM gmr_demo.protocol_analysis.silver_calls_deidentified
-UNION ALL SELECT 'silver_call_narratives', COUNT(*) FROM gmr_demo.protocol_analysis.silver_call_narratives
-UNION ALL SELECT 'silver_calls_routed', COUNT(*) FROM gmr_demo.protocol_analysis.silver_calls_routed
-UNION ALL SELECT 'silver_protocol_chunks', COUNT(*) FROM gmr_demo.protocol_analysis.silver_protocol_chunks
-UNION ALL SELECT 'gold_protocol_execution', COUNT(*) FROM gmr_demo.protocol_analysis.gold_protocol_execution
-UNION ALL SELECT 'gold_evaluation_summaries', COUNT(*) FROM gmr_demo.protocol_analysis.gold_evaluation_summaries
-UNION ALL SELECT 'gold_care_assessment', COUNT(*) FROM gmr_demo.protocol_analysis.gold_care_assessment
-UNION ALL SELECT 'gold_analytics_summary', COUNT(*) FROM gmr_demo.protocol_analysis.gold_analytics_summary;
+SELECT 'bronze_call_logs' AS tbl, COUNT(*) AS cnt FROM morgancatalog.protocol_analysis.bronze_call_logs
+UNION ALL SELECT 'bronze_protocols', COUNT(*) FROM morgancatalog.protocol_analysis.bronze_protocols
+UNION ALL SELECT 'silver_calls_deidentified', COUNT(*) FROM morgancatalog.protocol_analysis.silver_calls_deidentified
+UNION ALL SELECT 'silver_call_narratives', COUNT(*) FROM morgancatalog.protocol_analysis.silver_call_narratives
+UNION ALL SELECT 'silver_calls_routed', COUNT(*) FROM morgancatalog.protocol_analysis.silver_calls_routed
+UNION ALL SELECT 'silver_protocol_chunks', COUNT(*) FROM morgancatalog.protocol_analysis.silver_protocol_chunks
+UNION ALL SELECT 'gold_protocol_execution', COUNT(*) FROM morgancatalog.protocol_analysis.gold_protocol_execution
+UNION ALL SELECT 'gold_evaluation_summaries', COUNT(*) FROM morgancatalog.protocol_analysis.gold_evaluation_summaries
+UNION ALL SELECT 'gold_care_assessment', COUNT(*) FROM morgancatalog.protocol_analysis.gold_care_assessment
+UNION ALL SELECT 'gold_analytics_summary', COUNT(*) FROM morgancatalog.protocol_analysis.gold_analytics_summary;
 ```
 
 Confirm dashboard and Genie Space reflect the final data.

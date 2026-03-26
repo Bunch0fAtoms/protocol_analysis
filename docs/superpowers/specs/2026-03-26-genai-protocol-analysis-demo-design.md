@@ -119,7 +119,7 @@ A standalone notebook generates all source data and uploads to a Unity Catalog v
 
 ## 4. Unity Catalog Schema & Delta Tables
 
-**Catalog/Schema:** Parameterized (e.g., `gmr_protocol_analysis`)
+**Catalog/Schema:** Parameterized (e.g., `morgancatalog.protocol_analysis`)
 
 ### 4.1 Bronze Tables (Raw Ingestion)
 
