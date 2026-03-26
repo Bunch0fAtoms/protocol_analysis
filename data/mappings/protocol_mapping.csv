@@ -1,0 +1,29 @@
+legacy_protocol_name,new_protocol_name,protocol_file
+CHEST_PAIN_V1,Chest Pain,chest_pain.csv
+HEART_PROBLEMS_V1,Chest Pain,chest_pain.csv
+CARDIAC_V1,Chest Pain,chest_pain.csv
+BREATHING_DIFFICULTY_V1,Breathing Problems,breathing_problems.csv
+RESPIRATORY_DISTRESS_V1,Breathing Problems,breathing_problems.csv
+SHORTNESS_OF_BREATH_V1,Breathing Problems,breathing_problems.csv
+FALL_INJURY_V1,Falls / Traumatic Injury,falls_traumatic_injury.csv
+TRAUMA_V1,Falls / Traumatic Injury,falls_traumatic_injury.csv
+SLIP_AND_FALL_V1,Falls / Traumatic Injury,falls_traumatic_injury.csv
+ABDOMINAL_PAIN_V1,Abdominal Pain,abdominal_pain.csv
+STOMACH_PROBLEMS_V1,Abdominal Pain,abdominal_pain.csv
+GI_COMPLAINT_V1,Abdominal Pain,abdominal_pain.csv
+ALLERGIC_REACTION_V1,Allergic Reaction / Anaphylaxis,allergic_reaction.csv
+ANAPHYLAXIS_V1,Allergic Reaction / Anaphylaxis,allergic_reaction.csv
+HIVES_SWELLING_V1,Allergic Reaction / Anaphylaxis,allergic_reaction.csv
+SEIZURE_V1,Seizures,seizures.csv
+CONVULSIONS_V1,Seizures,seizures.csv
+EPILEPTIC_EVENT_V1,Seizures,seizures.csv
+OVERDOSE_V1,Overdose / Poisoning,overdose_poisoning.csv
+POISONING_V1,Overdose / Poisoning,overdose_poisoning.csv
+DRUG_INGESTION_V1,Overdose / Poisoning,overdose_poisoning.csv
+STROKE_V1,Stroke / Neurological Emergency,stroke_neurological.csv
+NEURO_EMERGENCY_V1,Stroke / Neurological Emergency,stroke_neurological.csv
+PREGNANCY_COMPLICATION_V1,Pregnancy Complications,pregnancy_complications.csv
+OB_EMERGENCY_V1,Pregnancy Complications,pregnancy_complications.csv
+UNRESPONSIVE_V1,Unconscious / Unresponsive,unconscious_unresponsive.csv
+UNCONSCIOUS_V1,Unconscious / Unresponsive,unconscious_unresponsive.csv
+FOUND_DOWN_V1,Unconscious / Unresponsive,unconscious_unresponsive.csv
