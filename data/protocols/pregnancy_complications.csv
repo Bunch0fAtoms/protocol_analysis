@@ -1,0 +1,45 @@
+protocol_name,row_number,module_name,question_text,condition,disposition,stop_rule
+Pregnancy Complications,1,Case Entry,Verify the address of the emergency. What is the exact address?,initial contact,,CONTINUE
+Pregnancy Complications,2,Case Entry,What is the callback number you are calling from?,initial contact,,CONTINUE
+Pregnancy Complications,3,Case Entry,Tell me exactly what happened.,initial contact,,CONTINUE
+Pregnancy Complications,4,Key Questions,Is she conscious?,consciousness check,,CONTINUE
+Pregnancy Complications,5,Key Questions,Is she breathing normally?,breathing check,,CONTINUE
+Pregnancy Complications,6,Key Questions,How many weeks pregnant is she?,gestational age,,CONTINUE
+Pregnancy Complications,7,Key Questions,Is she having contractions? How far apart are they?,contraction assessment,,CONTINUE
+Pregnancy Complications,8,Key Questions,Has her water broken? What color was the fluid?,rupture of membranes,,CONTINUE
+Pregnancy Complications,9,Key Questions,"Is there any vaginal bleeding? How much — spotting, or soaking through pads?",hemorrhage assessment,,CONTINUE
+Pregnancy Complications,10,Key Questions,Is she in pain? Where is the pain?,pain assessment,,CONTINUE
+Pregnancy Complications,11,Key Questions,Does she feel the urge to push?,imminent delivery,,CONTINUE
+Pregnancy Complications,12,Key Questions,Can you see the baby's head or any part of the baby?,crowning assessment,,CONTINUE
+Pregnancy Complications,13,Key Questions,Has she had a seizure?,eclampsia screen,,CONTINUE
+Pregnancy Complications,14,Key Questions,Does she have a severe headache or vision changes?,preeclampsia screen,,CONTINUE
+Pregnancy Complications,15,Key Questions,Is there swelling of the face or hands?,preeclampsia signs,,CONTINUE
+Pregnancy Complications,16,Key Questions,Is she dizzy or lightheaded?,hypotension symptoms,,CONTINUE
+Pregnancy Complications,17,Key Questions,Has she had any complications with this pregnancy?,pregnancy complications,,CONTINUE
+Pregnancy Complications,18,Key Questions,How many previous pregnancies and deliveries has she had?,obstetric history,,CONTINUE
+Pregnancy Complications,19,Key Questions,Has she had any previous C-sections?,surgical obstetric history,,CONTINUE
+Pregnancy Complications,20,Key Questions,Is this a high-risk pregnancy?,risk assessment,,CONTINUE
+Pregnancy Complications,21,Key Questions,Is the baby moving normally?,fetal movement,,CONTINUE
+Pregnancy Complications,22,Key Questions,Does she have a fever?,infection screen,,CONTINUE
+Pregnancy Complications,23,Key Questions,Was there any trauma or fall?,trauma assessment,,CONTINUE
+Pregnancy Complications,24,Determinant Assignment,"ECHO-level: Unconscious, not breathing — maternal cardiac arrest",unconscious AND not breathing,0,STOP
+Pregnancy Complications,25,Determinant Assignment,DELTA-level: Active heavy hemorrhage — soaking through pads continuously,heavy vaginal bleeding,1,STOP
+Pregnancy Complications,26,Determinant Assignment,DELTA-level: Eclamptic seizure — seizing during pregnancy,seizure AND pregnant,1,STOP
+Pregnancy Complications,27,Determinant Assignment,DELTA-level: Umbilical cord prolapse — cord visible before baby,cord prolapse,1,STOP
+Pregnancy Complications,28,Determinant Assignment,"DELTA-level: Imminent delivery with complications — breech, cord around neck",imminent delivery AND complications,1,STOP
+Pregnancy Complications,29,Determinant Assignment,"CHARLIE-level: Imminent uncomplicated delivery — baby crowning, contractions < 2 min apart",crowning AND contractions < 2 min,2,CONTINUE
+Pregnancy Complications,30,Determinant Assignment,"CHARLIE-level: Severe preeclampsia — severe headache, visual changes, hypertension symptoms",severe headache AND visual changes AND edema,2,CONTINUE
+Pregnancy Complications,31,Determinant Assignment,CHARLIE-level: Premature labor (<37 weeks) with active contractions,preterm AND active contractions,2,CONTINUE
+Pregnancy Complications,32,Determinant Assignment,"BRAVO-level: Moderate vaginal bleeding, stable vital signs, conscious",moderate bleeding AND stable AND conscious,3,CONTINUE
+Pregnancy Complications,33,Determinant Assignment,"BRAVO-level: Regular contractions < 5 min apart, term pregnancy, no complications",contractions < 5 min AND term AND no complications,3,CONTINUE
+Pregnancy Complications,34,Determinant Assignment,"ALPHA-level: Mild cramping or spotting, term pregnancy, no other symptoms",mild symptoms AND term AND stable,4,CONTINUE
+Pregnancy Complications,35,Determinant Assignment,"OMEGA-level: Braxton-Hicks contractions, no bleeding, baby moving normally, follow-up with OB",Braxton-Hicks AND no bleeding AND fetal movement normal,5,CONTINUE
+Pregnancy Complications,36,Pre-Arrival Instructions,Have her lie on her LEFT side — this improves blood flow to the baby.,conscious AND pregnant,,CONTINUE
+Pregnancy Complications,37,Pre-Arrival Instructions,If delivery is imminent: support the baby's head as it emerges. Do NOT pull on the baby.,crowning,,CONTINUE
+Pregnancy Complications,38,Pre-Arrival Instructions,"If the cord is around the baby's neck, gently slip it over the head. Do NOT cut or clamp the cord.",cord around neck,,CONTINUE
+Pregnancy Complications,39,Pre-Arrival Instructions,"After delivery, keep the baby at the level of the mother. Dry the baby and keep it warm.",post-delivery,,CONTINUE
+Pregnancy Complications,40,Pre-Arrival Instructions,If heavy bleeding: apply firm pressure with clean towels to the vaginal area. Elevate the legs.,hemorrhage,,CONTINUE
+Pregnancy Complications,41,Pre-Arrival Instructions,Do NOT give the patient anything to eat or drink.,all dispositions,,CONTINUE
+Pregnancy Complications,42,Pre-Arrival Instructions,"If she becomes unconscious and stops breathing, begin CPR. If pregnant and > 20 weeks, tilt her slightly to the LEFT during CPR.",unresponsive AND pregnant,,ELEVATE
+Pregnancy Complications,43,Case Exit,Stay on the line. Help is on the way.,dispatch confirmed,,CONTINUE
+Pregnancy Complications,44,Case Exit,"If the situation changes — heavier bleeding, baby coming, or she stops breathing — call us back immediately.",all dispositions,,CONTINUE

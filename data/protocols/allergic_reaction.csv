@@ -1,0 +1,46 @@
+protocol_name,row_number,module_name,question_text,condition,disposition,stop_rule
+Allergic Reaction / Anaphylaxis,1,Case Entry,Verify the address of the emergency. What is the exact address?,initial contact,,CONTINUE
+Allergic Reaction / Anaphylaxis,2,Case Entry,What is the callback number you are calling from?,initial contact,,CONTINUE
+Allergic Reaction / Anaphylaxis,3,Case Entry,Tell me exactly what happened.,initial contact,,CONTINUE
+Allergic Reaction / Anaphylaxis,4,Case Entry,How old is the patient?,initial contact,,CONTINUE
+Allergic Reaction / Anaphylaxis,5,Key Questions,Is s/he conscious?,consciousness check,,CONTINUE
+Allergic Reaction / Anaphylaxis,6,Key Questions,Is s/he breathing normally?,breathing check,,CONTINUE
+Allergic Reaction / Anaphylaxis,7,Key Questions,What was s/he exposed to? When did the exposure happen?,allergen identification,,CONTINUE
+Allergic Reaction / Anaphylaxis,8,Key Questions,"Was it a food, medication, insect sting, or something else?",exposure type,,CONTINUE
+Allergic Reaction / Anaphylaxis,9,Key Questions,How long ago did the symptoms start?,symptom onset,,CONTINUE
+Allergic Reaction / Anaphylaxis,10,Key Questions,"Is there any swelling of the face, lips, tongue, or throat?",angioedema,,CONTINUE
+Allergic Reaction / Anaphylaxis,11,Key Questions,Is s/he having difficulty breathing or swallowing?,airway compromise,,CONTINUE
+Allergic Reaction / Anaphylaxis,12,Key Questions,Do you hear any wheezing or high-pitched breathing sounds?,bronchospasm,,CONTINUE
+Allergic Reaction / Anaphylaxis,13,Key Questions,Is there a rash or hives? How widespread?,urticaria,,CONTINUE
+Allergic Reaction / Anaphylaxis,14,Key Questions,Is the skin itchy?,pruritus,,CONTINUE
+Allergic Reaction / Anaphylaxis,15,Key Questions,Does s/he feel dizzy or lightheaded?,hypotension symptoms,,CONTINUE
+Allergic Reaction / Anaphylaxis,16,Key Questions,Has s/he vomited or does s/he have diarrhea?,GI symptoms,,CONTINUE
+Allergic Reaction / Anaphylaxis,17,Key Questions,Does s/he have abdominal cramping?,abdominal symptoms,,CONTINUE
+Allergic Reaction / Anaphylaxis,18,Key Questions,Has s/he had a severe allergic reaction before?,allergy history,,CONTINUE
+Allergic Reaction / Anaphylaxis,19,Key Questions,Does s/he have an EpiPen or epinephrine auto-injector?,epinephrine availability,,CONTINUE
+Allergic Reaction / Anaphylaxis,20,Key Questions,Has the EpiPen been used? How many times?,epinephrine use,,CONTINUE
+Allergic Reaction / Anaphylaxis,21,Key Questions,Does s/he take any allergy medications like Benadryl?,antihistamine use,,CONTINUE
+Allergic Reaction / Anaphylaxis,22,Key Questions,Is the voice hoarse or different than normal?,laryngeal edema,,CONTINUE
+Allergic Reaction / Anaphylaxis,23,Key Questions,Does s/he have asthma?,asthma history,,CONTINUE
+Allergic Reaction / Anaphylaxis,24,Determinant Assignment,"ECHO-level: Anaphylactic shock — unconscious, not breathing",unconscious AND not breathing,0,STOP
+Allergic Reaction / Anaphylaxis,25,Determinant Assignment,DELTA-level: Throat swelling with severe difficulty breathing,angioedema AND severe dyspnea,1,STOP
+Allergic Reaction / Anaphylaxis,26,Determinant Assignment,DELTA-level: Tongue or lip swelling causing airway obstruction,tongue/lip swelling AND airway compromise,1,STOP
+Allergic Reaction / Anaphylaxis,27,Determinant Assignment,DELTA-level: Anaphylaxis — hives with breathing difficulty and dizziness/hypotension,urticaria AND dyspnea AND dizziness,1,STOP
+Allergic Reaction / Anaphylaxis,28,Determinant Assignment,"DELTA-level: Known severe allergy with rapid onset after exposure, altered consciousness",known allergy AND rapid onset AND altered LOC,1,STOP
+Allergic Reaction / Anaphylaxis,29,Determinant Assignment,"CHARLIE-level: Widespread hives with mild dyspnea, stable after EpiPen",widespread urticaria AND mild dyspnea AND post-epi,2,CONTINUE
+Allergic Reaction / Anaphylaxis,30,Determinant Assignment,CHARLIE-level: Facial swelling progressing but airway currently intact,progressive facial swelling AND airway intact,2,CONTINUE
+Allergic Reaction / Anaphylaxis,31,Determinant Assignment,CHARLIE-level: Insect sting with systemic reaction — hives beyond sting site,insect sting AND systemic urticaria,2,CONTINUE
+Allergic Reaction / Anaphylaxis,32,Determinant Assignment,"BRAVO-level: Moderate hives with no airway involvement, GI symptoms present",moderate urticaria AND GI symptoms AND no airway,3,CONTINUE
+Allergic Reaction / Anaphylaxis,33,Determinant Assignment,"BRAVO-level: Allergic reaction with facial swelling, no breathing difficulty",facial swelling AND no dyspnea,3,CONTINUE
+Allergic Reaction / Anaphylaxis,34,Determinant Assignment,"ALPHA-level: Localized hives, no systemic symptoms, mild itching",localized urticaria AND no systemic symptoms,4,CONTINUE
+Allergic Reaction / Anaphylaxis,35,Determinant Assignment,"ALPHA-level: Insect sting with local swelling only, no spreading",local reaction only,4,CONTINUE
+Allergic Reaction / Anaphylaxis,36,Determinant Assignment,"OMEGA-level: Mild rash, known allergy, oral antihistamine taken, symptoms improving",mild rash AND improving AND antihistamine taken,5,CONTINUE
+Allergic Reaction / Anaphylaxis,37,Pre-Arrival Instructions,"If the patient has an EpiPen: remove the safety cap, press firmly into the outer thigh (through clothing is okay), hold for 10 seconds.",has EpiPen AND anaphylaxis,,CONTINUE
+Allergic Reaction / Anaphylaxis,38,Pre-Arrival Instructions,"If a second EpiPen is available and symptoms are not improving after 5 minutes, use the second one.",symptoms persist after first epi,,CONTINUE
+Allergic Reaction / Anaphylaxis,39,Pre-Arrival Instructions,Have the patient lie flat with legs elevated UNLESS they are having difficulty breathing — then sit them upright.,conscious patient,,CONTINUE
+Allergic Reaction / Anaphylaxis,40,Pre-Arrival Instructions,"If the patient has Benadryl (diphenhydramine), give the appropriate dose by mouth if they can swallow safely.",can swallow AND has antihistamine,,CONTINUE
+Allergic Reaction / Anaphylaxis,41,Pre-Arrival Instructions,Remove the stinger by scraping sideways with a credit card. Do NOT squeeze or use tweezers.,insect sting,,CONTINUE
+Allergic Reaction / Anaphylaxis,42,Pre-Arrival Instructions,"If the patient becomes unconscious and stops breathing, begin CPR immediately.",patient becomes unresponsive,,ELEVATE
+Allergic Reaction / Anaphylaxis,43,Pre-Arrival Instructions,Watch for vomiting — turn the patient on their side if they start to vomit.,all dispositions,,CONTINUE
+Allergic Reaction / Anaphylaxis,44,Case Exit,Stay on the line. Help is on the way.,dispatch confirmed,,CONTINUE
+Allergic Reaction / Anaphylaxis,45,Case Exit,"If the symptoms get worse or s/he stops breathing, call us back immediately.",all dispositions,,CONTINUE

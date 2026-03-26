@@ -1,0 +1,45 @@
+protocol_name,row_number,module_name,question_text,condition,disposition,stop_rule
+Overdose / Poisoning,1,Case Entry,Verify the address of the emergency. What is the exact address?,initial contact,,CONTINUE
+Overdose / Poisoning,2,Case Entry,What is the callback number you are calling from?,initial contact,,CONTINUE
+Overdose / Poisoning,3,Case Entry,Tell me exactly what happened.,initial contact,,CONTINUE
+Overdose / Poisoning,4,Case Entry,"Is the scene safe? Are there any hazards — needles, chemicals, fumes?",scene safety,,CONTINUE
+Overdose / Poisoning,5,Key Questions,Is s/he conscious?,consciousness check,,CONTINUE
+Overdose / Poisoning,6,Key Questions,Is s/he breathing?,breathing check,,CONTINUE
+Overdose / Poisoning,7,Key Questions,"Is s/he breathing normally — or is it slow, shallow, or irregular?",breathing quality,,CONTINUE
+Overdose / Poisoning,8,Key Questions,What did s/he take or what was s/he exposed to?,substance identification,,CONTINUE
+Overdose / Poisoning,9,Key Questions,How much did s/he take?,quantity,,CONTINUE
+Overdose / Poisoning,10,Key Questions,When did s/he take it? How long ago?,time of ingestion,,CONTINUE
+Overdose / Poisoning,11,Key Questions,Was it intentional or accidental?,intent,,CONTINUE
+Overdose / Poisoning,12,Key Questions,Has s/he vomited?,vomiting,,CONTINUE
+Overdose / Poisoning,13,Key Questions,Are the pupils very small (pinpoint) or very large (dilated)?,pupil assessment,,CONTINUE
+Overdose / Poisoning,14,Key Questions,"Is the skin pale, blue, or flushed?",skin assessment,,CONTINUE
+Overdose / Poisoning,15,Key Questions,Is s/he responsive — can s/he answer questions?,responsiveness,,CONTINUE
+Overdose / Poisoning,16,Key Questions,Is s/he confused or agitated?,mental status,,CONTINUE
+Overdose / Poisoning,17,Key Questions,Is s/he having a seizure?,seizure,,CONTINUE
+Overdose / Poisoning,18,Key Questions,Is there any chest pain or irregular heartbeat?,cardiac symptoms,,CONTINUE
+Overdose / Poisoning,19,Key Questions,Does s/he have a history of substance use or prior overdoses?,substance history,,CONTINUE
+Overdose / Poisoning,20,Key Questions,Is there Narcan (naloxone) available?,naloxone availability,,CONTINUE
+Overdose / Poisoning,21,Key Questions,"Can you find the pill bottle, container, or packaging? How many are missing?",container identification,,CONTINUE
+Overdose / Poisoning,22,Key Questions,Are there any other people affected?,mass exposure screen,,CONTINUE
+Overdose / Poisoning,23,Key Questions,Does s/he have any other medical conditions?,medical history,,CONTINUE
+Overdose / Poisoning,24,Determinant Assignment,"ECHO-level: Unconscious, not breathing — suspected opioid overdose",unconscious AND not breathing AND opioid suspected,0,STOP
+Overdose / Poisoning,25,Determinant Assignment,"ECHO-level: Unconscious, not breathing — unknown substance",unconscious AND not breathing,0,STOP
+Overdose / Poisoning,26,Determinant Assignment,"DELTA-level: Unconscious but breathing, pinpoint pupils — opioid overdose",unconscious AND breathing AND pinpoint pupils,1,STOP
+Overdose / Poisoning,27,Determinant Assignment,DELTA-level: Seizures from overdose,seizure AND ingestion,1,STOP
+Overdose / Poisoning,28,Determinant Assignment,DELTA-level: Intentional ingestion of potentially lethal substance,intentional AND potentially lethal,1,STOP
+Overdose / Poisoning,29,Determinant Assignment,DELTA-level: Chemical exposure with multiple victims,chemical AND multiple victims,1,STOP
+Overdose / Poisoning,30,Determinant Assignment,"CHARLIE-level: Conscious but altered, ingested medication, able to give some history",altered AND conscious AND medication ingestion,2,CONTINUE
+Overdose / Poisoning,31,Determinant Assignment,CHARLIE-level: Vomiting blood or having GI symptoms after caustic ingestion,caustic ingestion AND GI symptoms,2,CONTINUE
+Overdose / Poisoning,32,Determinant Assignment,"BRAVO-level: Conscious and alert, accidental double dose of prescription medication",alert AND accidental AND prescription,3,CONTINUE
+Overdose / Poisoning,33,Determinant Assignment,"BRAVO-level: Accidental ingestion in a child, substance identified, child alert",child AND accidental AND alert,3,CONTINUE
+Overdose / Poisoning,34,Determinant Assignment,"ALPHA-level: Accidental minor ingestion, alert, no symptoms, Poison Control consulted",minor ingestion AND asymptomatic AND Poison Control,4,CONTINUE
+Overdose / Poisoning,35,Determinant Assignment,"OMEGA-level: Ingestion of non-toxic substance, no symptoms, Poison Control advises home monitoring",non-toxic AND asymptomatic,5,CONTINUE
+Overdose / Poisoning,36,Pre-Arrival Instructions,Do NOT induce vomiting unless instructed by Poison Control.,all ingestions,,CONTINUE
+Overdose / Poisoning,37,Pre-Arrival Instructions,If Narcan (naloxone) is available and you suspect opioid overdose: spray one dose into one nostril or inject into the thigh.,opioid suspected AND naloxone available,,CONTINUE
+Overdose / Poisoning,38,Pre-Arrival Instructions,"If the patient is unconscious but breathing, place in the recovery position on their side.",unconscious AND breathing,,CONTINUE
+Overdose / Poisoning,39,Pre-Arrival Instructions,"If the patient stops breathing, begin CPR immediately.",not breathing,,ELEVATE
+Overdose / Poisoning,40,Pre-Arrival Instructions,"If the patient is conscious, do NOT let them take any more of the substance.",conscious,,CONTINUE
+Overdose / Poisoning,41,Pre-Arrival Instructions,"Gather the pill bottles, packaging, or containers and have them ready for the paramedics.",all dispositions,,CONTINUE
+Overdose / Poisoning,42,Pre-Arrival Instructions,If chemical exposure: move the patient to fresh air if safe to do so. Remove contaminated clothing.,chemical exposure,,CONTINUE
+Overdose / Poisoning,43,Case Exit,Stay on the line. Help is on the way.,dispatch confirmed,,CONTINUE
+Overdose / Poisoning,44,Case Exit,"If s/he gets worse, stops breathing, or has a seizure, call us back immediately.",all dispositions,,CONTINUE

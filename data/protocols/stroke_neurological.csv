@@ -1,0 +1,46 @@
+protocol_name,row_number,module_name,question_text,condition,disposition,stop_rule
+Stroke / Neurological Emergency,1,Case Entry,Verify the address of the emergency. What is the exact address?,initial contact,,CONTINUE
+Stroke / Neurological Emergency,2,Case Entry,What is the callback number you are calling from?,initial contact,,CONTINUE
+Stroke / Neurological Emergency,3,Case Entry,Tell me exactly what happened.,initial contact,,CONTINUE
+Stroke / Neurological Emergency,4,Case Entry,How old is the patient?,initial contact,,CONTINUE
+Stroke / Neurological Emergency,5,Key Questions,Is s/he conscious?,consciousness check,,CONTINUE
+Stroke / Neurological Emergency,6,Key Questions,Is s/he breathing normally?,breathing check,,CONTINUE
+Stroke / Neurological Emergency,7,Key Questions,Ask the patient to smile. Does one side of the face droop?,facial droop — FAST,,CONTINUE
+Stroke / Neurological Emergency,8,Key Questions,Ask the patient to raise both arms. Does one arm drift downward?,arm drift — FAST,,CONTINUE
+Stroke / Neurological Emergency,9,Key Questions,Ask the patient to repeat a simple sentence like 'The sky is blue.' Is the speech slurred or garbled?,speech — FAST,,CONTINUE
+Stroke / Neurological Emergency,10,Key Questions,What time did the symptoms start? When was s/he last known to be normal?,time of onset — FAST,,CONTINUE
+Stroke / Neurological Emergency,11,Key Questions,Did the symptoms come on suddenly?,sudden onset,,CONTINUE
+Stroke / Neurological Emergency,12,Key Questions,Is there any numbness or weakness on one side of the body?,unilateral weakness,,CONTINUE
+Stroke / Neurological Emergency,13,Key Questions,Is s/he confused or having trouble understanding what you're saying?,receptive aphasia,,CONTINUE
+Stroke / Neurological Emergency,14,Key Questions,Can s/he see normally? Is there any vision loss or double vision?,visual changes,,CONTINUE
+Stroke / Neurological Emergency,15,Key Questions,Does s/he have a sudden severe headache — the worst headache of their life?,thunderclap headache,,CONTINUE
+Stroke / Neurological Emergency,16,Key Questions,Is s/he dizzy or having trouble walking or keeping balance?,ataxia/vertigo,,CONTINUE
+Stroke / Neurological Emergency,17,Key Questions,Has s/he vomited?,vomiting,,CONTINUE
+Stroke / Neurological Emergency,18,Key Questions,Has s/he had a seizure?,seizure,,CONTINUE
+Stroke / Neurological Emergency,19,Key Questions,Does s/he have a history of stroke or TIA?,stroke history,,CONTINUE
+Stroke / Neurological Emergency,20,Key Questions,"Does s/he have high blood pressure, diabetes, or atrial fibrillation?",stroke risk factors,,CONTINUE
+Stroke / Neurological Emergency,21,Key Questions,Is s/he on blood thinners?,anticoagulant use,,CONTINUE
+Stroke / Neurological Emergency,22,Key Questions,Has there been any recent head trauma?,head trauma,,CONTINUE
+Stroke / Neurological Emergency,23,Key Questions,Is there any neck pain or stiffness?,meningismus,,CONTINUE
+Stroke / Neurological Emergency,24,Determinant Assignment,ECHO-level: Unconscious and not breathing with neurological symptoms,unconscious AND not breathing,0,STOP
+Stroke / Neurological Emergency,25,Determinant Assignment,DELTA-level: Acute stroke signs (FAST positive) within 4.5 hours — time-critical,FAST positive AND onset < 4.5 hours,1,STOP
+Stroke / Neurological Emergency,26,Determinant Assignment,DELTA-level: Sudden worst headache of life with altered consciousness,thunderclap headache AND altered LOC,1,STOP
+Stroke / Neurological Emergency,27,Determinant Assignment,DELTA-level: Acute unilateral weakness/numbness with speech difficulty,unilateral weakness AND speech changes,1,STOP
+Stroke / Neurological Emergency,28,Determinant Assignment,DELTA-level: Stroke symptoms with seizure,stroke signs AND seizure,1,STOP
+Stroke / Neurological Emergency,29,Determinant Assignment,"CHARLIE-level: FAST positive, onset > 4.5 hours or unknown, stable",FAST positive AND onset > 4.5 hours AND stable,2,CONTINUE
+Stroke / Neurological Emergency,30,Determinant Assignment,"CHARLIE-level: Sudden severe headache with vomiting, no altered consciousness",severe headache AND vomiting AND alert,2,CONTINUE
+Stroke / Neurological Emergency,31,Determinant Assignment,CHARLIE-level: Resolving neurological symptoms — possible TIA,symptoms resolving AND stroke-like presentation,2,CONTINUE
+Stroke / Neurological Emergency,32,Determinant Assignment,"BRAVO-level: Mild facial droop only, no other deficits, onset unclear",isolated facial droop AND onset unknown,3,CONTINUE
+Stroke / Neurological Emergency,33,Determinant Assignment,BRAVO-level: Known TIA history with recurrent mild symptoms,TIA history AND mild symptoms,3,CONTINUE
+Stroke / Neurological Emergency,34,Determinant Assignment,"ALPHA-level: Mild headache with numbness, fully resolved, no deficits on exam",resolved symptoms AND normal exam,4,CONTINUE
+Stroke / Neurological Emergency,35,Determinant Assignment,"OMEGA-level: Chronic stable neurological complaint, no acute changes, physician follow-up",chronic stable AND no acute changes,5,CONTINUE
+Stroke / Neurological Emergency,36,Pre-Arrival Instructions,Note the exact time the symptoms started — this is critical for treatment decisions.,all stroke dispositions,,CONTINUE
+Stroke / Neurological Emergency,37,Pre-Arrival Instructions,Do NOT give the patient anything to eat or drink. Stroke can affect swallowing.,all stroke dispositions,,CONTINUE
+Stroke / Neurological Emergency,38,Pre-Arrival Instructions,Keep the patient lying flat with the head slightly elevated. Do NOT sit them fully upright.,conscious patient,,CONTINUE
+Stroke / Neurological Emergency,39,Pre-Arrival Instructions,Do NOT give aspirin or any medication. The type of stroke must be determined first.,all stroke dispositions,,CONTINUE
+Stroke / Neurological Emergency,40,Pre-Arrival Instructions,"If the patient vomits, turn them on their side to keep the airway clear.",vomiting,,CONTINUE
+Stroke / Neurological Emergency,41,Pre-Arrival Instructions,Keep the patient calm and still. Do not let them walk.,all dispositions,,CONTINUE
+Stroke / Neurological Emergency,42,Pre-Arrival Instructions,"If the patient becomes unconscious and stops breathing, begin CPR.",patient becomes unresponsive,,ELEVATE
+Stroke / Neurological Emergency,43,Pre-Arrival Instructions,Gather all medications — especially blood thinners — and have them ready for paramedics.,all dispositions,,CONTINUE
+Stroke / Neurological Emergency,44,Case Exit,Stay on the line. Help is on the way. Time is critical.,dispatch confirmed,,CONTINUE
+Stroke / Neurological Emergency,45,Case Exit,"If anything changes — new symptoms, loss of consciousness, or s/he stops breathing — call us back immediately.",all dispositions,,CONTINUE

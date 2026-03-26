@@ -1,0 +1,41 @@
+protocol_name,row_number,module_name,question_text,condition,disposition,stop_rule
+Seizures,1,Case Entry,Verify the address of the emergency. What is the exact address?,initial contact,,CONTINUE
+Seizures,2,Case Entry,What is the callback number you are calling from?,initial contact,,CONTINUE
+Seizures,3,Case Entry,Tell me exactly what happened.,initial contact,,CONTINUE
+Seizures,4,Key Questions,Is s/he seizing right now?,active seizure,,CONTINUE
+Seizures,5,Key Questions,Is s/he conscious?,consciousness check,,CONTINUE
+Seizures,6,Key Questions,Is s/he breathing?,breathing check,,CONTINUE
+Seizures,7,Key Questions,How long has the seizure been going on?,seizure duration,,CONTINUE
+Seizures,8,Key Questions,What does the seizure look like — is the whole body shaking or just one part?,seizure type,,CONTINUE
+Seizures,9,Key Questions,Has the seizure stopped? Is s/he waking up?,postictal state,,CONTINUE
+Seizures,10,Key Questions,Is s/he responsive — can s/he answer questions or follow commands?,responsiveness,,CONTINUE
+Seizures,11,Key Questions,Does s/he have a history of seizures or epilepsy?,seizure history,,CONTINUE
+Seizures,12,Key Questions,Does s/he take seizure medication? Has s/he missed any doses?,medication compliance,,CONTINUE
+Seizures,13,Key Questions,Has s/he had more than one seizure today?,seizure frequency,,CONTINUE
+Seizures,14,Key Questions,Did s/he hit the head during the seizure?,head injury,,CONTINUE
+Seizures,15,Key Questions,Is there any bleeding or injury?,trauma assessment,,CONTINUE
+Seizures,16,Key Questions,Is s/he diabetic? Could the blood sugar be low?,hypoglycemia screen,,CONTINUE
+Seizures,17,Key Questions,Does s/he use drugs or alcohol? Could this be an overdose or withdrawal?,substance use,,CONTINUE
+Seizures,18,Key Questions,Does s/he have a fever? Is s/he hot to the touch?,febrile seizure screen,,CONTINUE
+Seizures,19,Key Questions,Is the patient pregnant?,eclampsia screen,,CONTINUE
+Seizures,20,Key Questions,How old is the patient?,age,,CONTINUE
+Seizures,21,Key Questions,Has s/he been ill recently?,recent illness,,CONTINUE
+Seizures,22,Determinant Assignment,ECHO-level: Seizure with respiratory arrest — not breathing,seizure AND not breathing,0,STOP
+Seizures,23,Determinant Assignment,DELTA-level: Status epilepticus — continuous seizure > 5 minutes,seizure duration > 5 min,1,STOP
+Seizures,24,Determinant Assignment,DELTA-level: Multiple seizures without regaining consciousness between them,serial seizures AND no recovery,1,STOP
+Seizures,25,Determinant Assignment,DELTA-level: Seizure in pregnant patient (eclampsia),pregnant AND seizure,1,STOP
+Seizures,26,Determinant Assignment,DELTA-level: First-time seizure with no known seizure history,no seizure history AND first event,1,STOP
+Seizures,27,Determinant Assignment,"CHARLIE-level: Seizure stopped, postictal, known epilepsy, breathing normally",postictal AND known epilepsy AND breathing,2,CONTINUE
+Seizures,28,Determinant Assignment,CHARLIE-level: Seizure with head injury during event,seizure AND head injury,2,CONTINUE
+Seizures,29,Determinant Assignment,"BRAVO-level: Known epilepsy, single seizure, recovering normally, missed medication",known epilepsy AND single seizure AND recovering AND missed meds,3,CONTINUE
+Seizures,30,Determinant Assignment,"BRAVO-level: Febrile seizure in child, seizure has stopped, breathing normally",febrile AND child AND seizure stopped AND breathing,3,CONTINUE
+Seizures,31,Determinant Assignment,"ALPHA-level: Known epilepsy, typical seizure pattern, fully recovered, back to baseline",known epilepsy AND fully recovered AND at baseline,4,CONTINUE
+Seizures,32,Determinant Assignment,"OMEGA-level: Suspected non-epileptic event, fully alert, no injury, physician follow-up",non-epileptic AND alert AND no injury,5,CONTINUE
+Seizures,33,Pre-Arrival Instructions,Do NOT put anything in the patient's mouth. Do NOT restrain them.,active seizure,,CONTINUE
+Seizures,34,Pre-Arrival Instructions,Clear the area around the patient — move furniture and sharp objects away.,active seizure,,CONTINUE
+Seizures,35,Pre-Arrival Instructions,Time the seizure if possible. Note when it started.,active seizure,,CONTINUE
+Seizures,36,Pre-Arrival Instructions,"When the seizure stops, gently roll the patient onto their side (recovery position).",seizure stopped,,CONTINUE
+Seizures,37,Pre-Arrival Instructions,"If the patient is diabetic, do NOT give anything by mouth while altered. Wait until fully alert.",diabetic AND postictal,,CONTINUE
+Seizures,38,Pre-Arrival Instructions,"If the patient stops breathing after the seizure, begin CPR.",not breathing post-seizure,,ELEVATE
+Seizures,39,Case Exit,Stay on the line. Help is on the way.,dispatch confirmed,,CONTINUE
+Seizures,40,Case Exit,"If another seizure starts or s/he stops breathing, call us back immediately.",all dispositions,,CONTINUE

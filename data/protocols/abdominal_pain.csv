@@ -1,0 +1,45 @@
+protocol_name,row_number,module_name,question_text,condition,disposition,stop_rule
+Abdominal Pain,1,Case Entry,Verify the address of the emergency. What is the exact address?,initial contact,,CONTINUE
+Abdominal Pain,2,Case Entry,What is the callback number you are calling from?,initial contact,,CONTINUE
+Abdominal Pain,3,Case Entry,Tell me exactly what happened.,initial contact,,CONTINUE
+Abdominal Pain,4,Key Questions,Is s/he conscious?,consciousness check,,CONTINUE
+Abdominal Pain,5,Key Questions,Is s/he breathing normally?,breathing check,,CONTINUE
+Abdominal Pain,6,Key Questions,Where exactly is the pain? Can you point to it?,pain location,,CONTINUE
+Abdominal Pain,7,Key Questions,When did the pain start?,onset time,,CONTINUE
+Abdominal Pain,8,Key Questions,Did the pain come on suddenly or gradually?,onset pattern,,CONTINUE
+Abdominal Pain,9,Key Questions,"On a scale of 1 to 10, how severe is the pain?",pain severity,,CONTINUE
+Abdominal Pain,10,Key Questions,Is the pain constant or does it come in waves?,pain pattern,,CONTINUE
+Abdominal Pain,11,Key Questions,Has s/he vomited? How many times? Is there any blood in the vomit?,vomiting assessment,,CONTINUE
+Abdominal Pain,12,Key Questions,"Is there any blood in the stool or has s/he had black, tarry stools?",GI bleeding,,CONTINUE
+Abdominal Pain,13,Key Questions,Does s/he have diarrhea?,bowel changes,,CONTINUE
+Abdominal Pain,14,Key Questions,When was the last bowel movement?,constipation screen,,CONTINUE
+Abdominal Pain,15,Key Questions,Is the abdomen rigid or hard to the touch?,peritoneal signs,,CONTINUE
+Abdominal Pain,16,Key Questions,Does s/he have a fever?,fever,,CONTINUE
+Abdominal Pain,17,Key Questions,Is there any chance s/he could be pregnant?,pregnancy screen,,CONTINUE
+Abdominal Pain,18,Key Questions,Has s/he had any abdominal surgeries in the past?,surgical history,,CONTINUE
+Abdominal Pain,19,Key Questions,"Does s/he have a history of kidney stones, gallstones, or ulcers?",GI/GU history,,CONTINUE
+Abdominal Pain,20,Key Questions,Is s/he diabetic?,diabetes,,CONTINUE
+Abdominal Pain,21,Key Questions,Has s/he eaten anything unusual or potentially contaminated?,food poisoning screen,,CONTINUE
+Abdominal Pain,22,Key Questions,Is there any pain in the chest or back associated with the abdominal pain?,referred pain,,CONTINUE
+Abdominal Pain,23,Key Questions,Is s/he able to keep fluids down?,hydration status,,CONTINUE
+Abdominal Pain,24,Key Questions,Does s/he feel dizzy or lightheaded when standing?,orthostatic symptoms,,CONTINUE
+Abdominal Pain,25,Determinant Assignment,ECHO-level: Unconscious with abdominal distension and not breathing,unconscious AND not breathing,0,STOP
+Abdominal Pain,26,Determinant Assignment,"DELTA-level: Rigid abdomen with signs of shock — pale, clammy, rapid pulse",rigid abdomen AND shock signs,1,STOP
+Abdominal Pain,27,Determinant Assignment,DELTA-level: Vomiting large amounts of blood or passing large bloody stools,hematemesis OR massive hematochezia,1,STOP
+Abdominal Pain,28,Determinant Assignment,DELTA-level: Severe abdominal pain with syncope,severe pain AND syncope,1,STOP
+Abdominal Pain,29,Determinant Assignment,"DELTA-level: Suspected ruptured ectopic pregnancy — lower abdominal pain, positive pregnancy, lightheaded",pregnancy AND lower abd pain AND dizziness,1,STOP
+Abdominal Pain,30,Determinant Assignment,"CHARLIE-level: Severe pain (>=8/10) with rigid abdomen, conscious",severe pain AND rigid abdomen AND conscious,2,CONTINUE
+Abdominal Pain,31,Determinant Assignment,CHARLIE-level: Abdominal pain with fever >101F and unable to keep fluids down,pain AND high fever AND vomiting,2,CONTINUE
+Abdominal Pain,32,Determinant Assignment,"BRAVO-level: Moderate pain with vomiting but no blood, keeping some fluids",moderate pain AND vomiting AND no bleeding,3,CONTINUE
+Abdominal Pain,33,Determinant Assignment,"BRAVO-level: Known kidney stone pattern — severe flank pain, writhing",flank pain AND hx kidney stones,3,CONTINUE
+Abdominal Pain,34,Determinant Assignment,"ALPHA-level: Mild to moderate abdominal pain, no vomiting, no bleeding, stable",mild pain AND no red flags,4,CONTINUE
+Abdominal Pain,35,Determinant Assignment,"ALPHA-level: Mild abdominal discomfort with diarrhea, able to keep fluids down",mild pain AND diarrhea AND tolerating fluids,4,CONTINUE
+Abdominal Pain,36,Determinant Assignment,"OMEGA-level: Chronic abdominal discomfort, no new symptoms, physician follow-up planned",chronic AND stable AND follow-up arranged,5,CONTINUE
+Abdominal Pain,37,Pre-Arrival Instructions,Have the patient lie in a position of comfort — many prefer on their side with knees drawn up.,conscious patient,,CONTINUE
+Abdominal Pain,38,Pre-Arrival Instructions,Do NOT give the patient anything to eat or drink.,all dispositions,,CONTINUE
+Abdominal Pain,39,Pre-Arrival Instructions,Do NOT give any pain medication — this may mask symptoms the paramedics need to assess.,all dispositions,,CONTINUE
+Abdominal Pain,40,Pre-Arrival Instructions,"If the patient is vomiting, turn them on their side to prevent choking.",vomiting,,CONTINUE
+Abdominal Pain,41,Pre-Arrival Instructions,"If the patient becomes unconscious and stops breathing, begin CPR.",patient becomes unresponsive,,ELEVATE
+Abdominal Pain,42,Pre-Arrival Instructions,Gather all medications and have them ready for the paramedics.,all dispositions,,CONTINUE
+Abdominal Pain,43,Case Exit,Stay on the line. Help is on the way.,dispatch confirmed,,CONTINUE
+Abdominal Pain,44,Case Exit,If anything changes — if s/he gets worse or stops breathing — call us back immediately.,all dispositions,,CONTINUE

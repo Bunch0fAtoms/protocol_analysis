@@ -1,0 +1,55 @@
+protocol_name,row_number,module_name,question_text,condition,disposition,stop_rule
+Breathing Problems,1,Case Entry,Verify the address of the emergency. What is the exact address?,initial contact,,CONTINUE
+Breathing Problems,2,Case Entry,What is the callback number you are calling from?,initial contact,,CONTINUE
+Breathing Problems,3,Case Entry,Tell me exactly what happened.,initial contact,,CONTINUE
+Breathing Problems,4,Case Entry,How old is the patient?,initial contact,,CONTINUE
+Breathing Problems,5,Key Questions,Is s/he conscious?,consciousness check,,CONTINUE
+Breathing Problems,6,Key Questions,Is s/he breathing?,breathing check,,CONTINUE
+Breathing Problems,7,Key Questions,Is s/he breathing normally or is it difficult/labored?,breathing quality,,CONTINUE
+Breathing Problems,8,Key Questions,Can s/he speak in full sentences or only a few words at a time?,speech assessment,,CONTINUE
+Breathing Problems,9,Key Questions,Do you hear any wheezing or whistling sound when s/he breathes?,wheezing,,CONTINUE
+Breathing Problems,10,Key Questions,Do you hear a high-pitched sound when s/he breathes in?,stridor,,CONTINUE
+Breathing Problems,11,Key Questions,Are the lips or fingertips turning blue or gray?,cyanosis,,CONTINUE
+Breathing Problems,12,Key Questions,Is s/he using the muscles in the neck or between the ribs to breathe?,accessory muscle use,,CONTINUE
+Breathing Problems,13,Key Questions,When did the breathing difficulty start?,onset time,,CONTINUE
+Breathing Problems,14,Key Questions,Did it come on suddenly or gradually?,onset pattern,,CONTINUE
+Breathing Problems,15,Key Questions,Was s/he eating or drinking when it started? Could something be stuck in the throat?,foreign body aspiration,,CONTINUE
+Breathing Problems,16,Key Questions,Does s/he have asthma or COPD?,respiratory history,,CONTINUE
+Breathing Problems,17,Key Questions,Does s/he have an inhaler or nebulizer? Has s/he used it?,inhaler use,,CONTINUE
+Breathing Problems,18,Key Questions,How many times has s/he used the inhaler today?,rescue inhaler frequency,,CONTINUE
+Breathing Problems,19,Key Questions,Does s/he have any allergies? Has s/he been exposed to any allergens?,allergy history,,CONTINUE
+Breathing Problems,20,Key Questions,"Is there any swelling of the face, tongue, or throat?",angioedema,,CONTINUE
+Breathing Problems,21,Key Questions,Does s/he have a fever or cough?,infection signs,,CONTINUE
+Breathing Problems,22,Key Questions,Is s/he coughing up anything? What color is it?,sputum assessment,,CONTINUE
+Breathing Problems,23,Key Questions,Does s/he have any chest pain?,associated chest pain,,CONTINUE
+Breathing Problems,24,Key Questions,Has s/he had a recent surgery or been on bed rest?,PE risk factors,,CONTINUE
+Breathing Problems,25,Key Questions,Does s/he have a history of heart failure?,CHF history,,CONTINUE
+Breathing Problems,26,Key Questions,Is there swelling in the ankles or legs?,peripheral edema,,CONTINUE
+Breathing Problems,27,Key Questions,Is s/he on home oxygen? What is the flow rate?,home O2 use,,CONTINUE
+Breathing Problems,28,Key Questions,Has s/he had episodes like this before? Was s/he ever intubated?,prior intubation,,CONTINUE
+Breathing Problems,29,Key Questions,Can s/he cough forcefully?,cough effectiveness,,CONTINUE
+Breathing Problems,30,Determinant Assignment,ECHO-level: Not breathing — respiratory arrest,not breathing AND unconscious,0,STOP
+Breathing Problems,31,Determinant Assignment,"ECHO-level: Choking — complete obstruction, cannot speak or cough",complete airway obstruction,0,STOP
+Breathing Problems,32,Determinant Assignment,DELTA-level: Severe respiratory distress with cyanosis,severe distress AND cyanosis,1,STOP
+Breathing Problems,33,Determinant Assignment,DELTA-level: Stridor with drooling and unable to swallow,stridor AND drooling,1,STOP
+Breathing Problems,34,Determinant Assignment,DELTA-level: Anaphylaxis — throat swelling with breathing difficulty,angioedema AND dyspnea,1,STOP
+Breathing Problems,35,Determinant Assignment,"DELTA-level: Unable to speak, tripod positioning, accessory muscle use",cannot speak AND tripod AND accessory muscles,1,STOP
+Breathing Problems,36,Determinant Assignment,"CHARLIE-level: Moderate distress, speaks only a few words at a time",speaks words only AND wheezing,2,CONTINUE
+Breathing Problems,37,Determinant Assignment,"CHARLIE-level: Known asthma, inhaler not helping after multiple doses",asthma AND inhaler ineffective,2,CONTINUE
+Breathing Problems,38,Determinant Assignment,CHARLIE-level: Acute dyspnea with history of CHF and lower extremity edema,CHF AND edema AND dyspnea,2,CONTINUE
+Breathing Problems,39,Determinant Assignment,BRAVO-level: Wheezing with some improvement after inhaler,wheezing AND partial inhaler response,3,CONTINUE
+Breathing Problems,40,Determinant Assignment,BRAVO-level: Moderate dyspnea with fever and productive cough,dyspnea AND fever AND cough,3,CONTINUE
+Breathing Problems,41,Determinant Assignment,BRAVO-level: Breathing difficulty with recent surgery or immobility,dyspnea AND PE risk,3,CONTINUE
+Breathing Problems,42,Determinant Assignment,"ALPHA-level: Mild shortness of breath, speaking full sentences, no distress signs",mild dyspnea AND speaking full sentences,4,CONTINUE
+Breathing Problems,43,Determinant Assignment,"ALPHA-level: Known COPD with slight worsening, baseline near-normal",COPD AND mild exacerbation,4,CONTINUE
+Breathing Problems,44,Determinant Assignment,"OMEGA-level: Anxiety-related hyperventilation, no other symptoms",hyperventilation AND no red flags,5,CONTINUE
+Breathing Problems,45,Pre-Arrival Instructions,Have the patient sit upright. Do NOT let them lie flat.,all dispositions,,CONTINUE
+Breathing Problems,46,Pre-Arrival Instructions,"If the patient has a prescribed inhaler, help them use it now — 2 puffs, wait 1 minute, repeat if needed.",has inhaler,,CONTINUE
+Breathing Problems,47,Pre-Arrival Instructions,"If the patient has an EpiPen and you suspect anaphylaxis, help inject it into the outer thigh.",anaphylaxis suspected,,ELEVATE
+Breathing Problems,48,Pre-Arrival Instructions,"Loosen any tight clothing around the chest, neck, and waist.",all dispositions,,CONTINUE
+Breathing Problems,49,Pre-Arrival Instructions,"If the patient is choking and conscious, perform abdominal thrusts (Heimlich maneuver): stand behind, make a fist above the navel, thrust inward and upward.",choking AND conscious,,CONTINUE
+Breathing Problems,50,Pre-Arrival Instructions,"If the patient becomes unconscious and stops breathing, begin CPR immediately.",patient becomes unresponsive,,ELEVATE
+Breathing Problems,51,Pre-Arrival Instructions,"If on home oxygen, increase the flow rate by 1-2 liters per minute.",on home O2,,CONTINUE
+Breathing Problems,52,Pre-Arrival Instructions,"Encourage slow, controlled breathing — in through the nose, out through pursed lips.",conscious AND breathing,,CONTINUE
+Breathing Problems,53,Case Exit,Stay on the line with me. Help is on the way.,dispatch confirmed,,CONTINUE
+Breathing Problems,54,Case Exit,"If the breathing gets worse or s/he stops breathing, call us back immediately.",all dispositions,,CONTINUE

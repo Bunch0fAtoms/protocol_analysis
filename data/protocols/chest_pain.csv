@@ -1,0 +1,58 @@
+protocol_name,row_number,module_name,question_text,condition,disposition,stop_rule
+Chest Pain,1,Case Entry,Verify the address of the emergency. What is the exact address?,initial contact,,CONTINUE
+Chest Pain,2,Case Entry,What is the callback number you are calling from?,initial contact,,CONTINUE
+Chest Pain,3,Case Entry,Tell me exactly what happened.,initial contact,,CONTINUE
+Chest Pain,4,Case Entry,How old is the patient?,initial contact,,CONTINUE
+Chest Pain,5,Key Questions,Is s/he conscious?,consciousness check,,CONTINUE
+Chest Pain,6,Key Questions,Is s/he breathing?,breathing check,,CONTINUE
+Chest Pain,7,Key Questions,Is s/he breathing normally?,breathing quality,,CONTINUE
+Chest Pain,8,Key Questions,Where exactly is the pain? Can you point to it?,pain location,,CONTINUE
+Chest Pain,9,Key Questions,Is the pain in the center of the chest?,substernal pain,,CONTINUE
+Chest Pain,10,Key Questions,"Does the pain spread to the arm, jaw, neck, or back?",pain radiation,,CONTINUE
+Chest Pain,11,Key Questions,"How would you describe the pain — is it crushing, squeezing, or pressure-like?",pain quality,,CONTINUE
+Chest Pain,12,Key Questions,"On a scale of 1 to 10, how severe is the pain?",pain severity,,CONTINUE
+Chest Pain,13,Key Questions,When did the pain start?,onset time,,CONTINUE
+Chest Pain,14,Key Questions,Has the pain been constant or does it come and go?,pain pattern,,CONTINUE
+Chest Pain,15,Key Questions,Is s/he sweating more than normal or feeling clammy?,diaphoresis,,CONTINUE
+Chest Pain,16,Key Questions,Does s/he feel nauseous or has s/he vomited?,nausea/vomiting,,CONTINUE
+Chest Pain,17,Key Questions,Is s/he short of breath?,dyspnea,,CONTINUE
+Chest Pain,18,Key Questions,Does s/he feel dizzy or lightheaded?,dizziness,,CONTINUE
+Chest Pain,19,Key Questions,Has s/he had a heart attack before?,cardiac history,,CONTINUE
+Chest Pain,20,Key Questions,Does s/he have a history of heart disease or angina?,cardiac history,,CONTINUE
+Chest Pain,21,Key Questions,Does s/he take nitroglycerin?,medication history,,CONTINUE
+Chest Pain,22,Key Questions,Has s/he taken any nitroglycerin today? How many?,medication use,,CONTINUE
+Chest Pain,23,Key Questions,Does s/he take blood thinners or aspirin?,anticoagulant use,,CONTINUE
+Chest Pain,24,Key Questions,Does s/he have a history of high blood pressure or diabetes?,comorbidities,,CONTINUE
+Chest Pain,25,Key Questions,Is s/he able to speak in full sentences?,respiratory effort,,CONTINUE
+Chest Pain,26,Key Questions,What was s/he doing when the pain started?,activity at onset,,CONTINUE
+Chest Pain,27,Key Questions,Does the pain get worse when s/he breathes in?,pleuritic component,,CONTINUE
+Chest Pain,28,Key Questions,Is there any swelling in the legs?,peripheral edema,,CONTINUE
+Chest Pain,29,Key Questions,Has s/he recently had surgery or been immobile for a long time?,PE risk factors,,CONTINUE
+Chest Pain,30,Key Questions,Does s/he use cocaine or stimulant drugs?,substance use,,CONTINUE
+Chest Pain,31,Determinant Assignment,ECHO-level: Cardiac arrest — not conscious and not breathing,unconscious AND not breathing,0,STOP
+Chest Pain,32,Determinant Assignment,ECHO-level: Agonal breathing with chest pain,unconscious AND agonal respirations,0,STOP
+Chest Pain,33,Determinant Assignment,DELTA-level: Crushing substernal pain with diaphoresis and radiation to arm/jaw,substernal pain AND diaphoresis AND radiation,1,STOP
+Chest Pain,34,Determinant Assignment,DELTA-level: Severe difficulty breathing with chest pain,severe dyspnea AND chest pain,1,STOP
+Chest Pain,35,Determinant Assignment,DELTA-level: Known cardiac history with new onset chest pain and altered consciousness,cardiac history AND altered LOC,1,STOP
+Chest Pain,36,Determinant Assignment,DELTA-level: Chest pain with syncope or near-syncope,chest pain AND syncope,1,STOP
+Chest Pain,37,Determinant Assignment,"CHARLIE-level: Substernal chest pain with cardiac history, stable vitals",substernal pain AND cardiac history AND conscious,2,CONTINUE
+Chest Pain,38,Determinant Assignment,CHARLIE-level: Chest pain severity >= 7/10 with dyspnea,pain >= 7 AND dyspnea,2,CONTINUE
+Chest Pain,39,Determinant Assignment,CHARLIE-level: Chest pain with nitroglycerin unresponsive after 3 doses,pain persists after 3x NTG,2,CONTINUE
+Chest Pain,40,Determinant Assignment,BRAVO-level: Moderate chest pain with no radiation or diaphoresis,moderate pain AND no red flags,3,CONTINUE
+Chest Pain,41,Determinant Assignment,BRAVO-level: Chest pain improved after nitroglycerin,pain improved with NTG,3,CONTINUE
+Chest Pain,42,Determinant Assignment,BRAVO-level: Pleuritic chest pain with recent immobility,pleuritic pain AND PE risk,3,CONTINUE
+Chest Pain,43,Determinant Assignment,"ALPHA-level: Minor chest pain, non-cardiac features, no risk factors",mild pain AND no cardiac features AND no history,4,CONTINUE
+Chest Pain,44,Determinant Assignment,ALPHA-level: Chest wall tenderness reproducible with palpation,reproducible with palpation,4,CONTINUE
+Chest Pain,45,Determinant Assignment,"OMEGA-level: Chronic stable chest pain, no new symptoms, physician follow-up arranged",chronic stable AND no change,5,CONTINUE
+Chest Pain,46,Pre-Arrival Instructions,Do not let the patient eat or drink anything.,all dispositions,,CONTINUE
+Chest Pain,47,Pre-Arrival Instructions,Have the patient sit up or assume a position of comfort. Do NOT let them lie flat if short of breath.,conscious patient,,CONTINUE
+Chest Pain,48,Pre-Arrival Instructions,"If the patient has prescribed nitroglycerin, assist with one dose under the tongue now.",has NTG AND pain persists,,CONTINUE
+Chest Pain,49,Pre-Arrival Instructions,"If the patient is not allergic to aspirin and can swallow, have them chew one adult aspirin (325mg) or four baby aspirin.",no aspirin allergy,,CONTINUE
+Chest Pain,50,Pre-Arrival Instructions,Loosen any tight clothing around the chest and neck.,all dispositions,,CONTINUE
+Chest Pain,51,Pre-Arrival Instructions,"If the patient becomes unconscious and stops breathing, begin CPR: 30 compressions then 2 breaths. Push hard and fast in the center of the chest.",patient becomes unresponsive,,ELEVATE
+Chest Pain,52,Pre-Arrival Instructions,"If an AED is available, turn it on and follow the voice prompts.",AED available,,CONTINUE
+Chest Pain,53,Pre-Arrival Instructions,Keep the patient calm and still. Do not let them walk or exert themselves.,all dispositions,,CONTINUE
+Chest Pain,54,Pre-Arrival Instructions,Gather all medications the patient takes and have them ready for the paramedics.,all dispositions,,CONTINUE
+Chest Pain,55,Case Exit,Stay on the line with me. Help is on the way.,dispatch confirmed,,CONTINUE
+Chest Pain,56,Case Exit,"If anything changes — if s/he gets worse, becomes unconscious, or stops breathing — call us back immediately.",all dispositions,,CONTINUE
+Chest Pain,57,Case Exit,Do not hang up until I tell you to.,all dispositions,,CONTINUE

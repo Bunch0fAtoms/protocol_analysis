@@ -1,0 +1,52 @@
+protocol_name,row_number,module_name,question_text,condition,disposition,stop_rule
+Unconscious / Unresponsive,1,Case Entry,Verify the address of the emergency. What is the exact address?,initial contact,,CONTINUE
+Unconscious / Unresponsive,2,Case Entry,What is the callback number you are calling from?,initial contact,,CONTINUE
+Unconscious / Unresponsive,3,Case Entry,Tell me exactly what happened.,initial contact,,CONTINUE
+Unconscious / Unresponsive,4,Case Entry,How old is the patient?,initial contact,,CONTINUE
+Unconscious / Unresponsive,5,Key Questions,Is s/he breathing?,breathing check,,CONTINUE
+Unconscious / Unresponsive,6,Key Questions,"Is s/he breathing normally, or is it gasping, gurgling, or irregular?",breathing quality,,CONTINUE
+Unconscious / Unresponsive,7,Key Questions,Can you feel a pulse? Check the side of the neck.,pulse check,,CONTINUE
+Unconscious / Unresponsive,8,Key Questions,Tap the shoulders firmly and shout — does s/he respond at all?,responsiveness,,CONTINUE
+Unconscious / Unresponsive,9,Key Questions,Does s/he respond to pain? Pinch the earlobe — any reaction?,pain response,,CONTINUE
+Unconscious / Unresponsive,10,Key Questions,Are the eyes open? Do they respond to your voice?,eye response,,CONTINUE
+Unconscious / Unresponsive,11,Key Questions,When was s/he last seen normal and awake?,last known normal,,CONTINUE
+Unconscious / Unresponsive,12,Key Questions,Did anyone witness what happened?,witness,,CONTINUE
+Unconscious / Unresponsive,13,Key Questions,Did s/he collapse suddenly or gradually become unresponsive?,onset pattern,,CONTINUE
+Unconscious / Unresponsive,14,Key Questions,Was there any seizure activity — shaking or jerking?,seizure assessment,,CONTINUE
+Unconscious / Unresponsive,15,Key Questions,Is there any bleeding or sign of trauma?,trauma assessment,,CONTINUE
+Unconscious / Unresponsive,16,Key Questions,"What position is s/he in? Is s/he on the floor, in a chair, in bed?",position,,CONTINUE
+Unconscious / Unresponsive,17,Key Questions,"Are there any pill bottles, syringes, or drugs nearby?",overdose screen,,CONTINUE
+Unconscious / Unresponsive,18,Key Questions,Is there any vomit? Is the airway clear?,airway assessment,,CONTINUE
+Unconscious / Unresponsive,19,Key Questions,"What color is the skin — normal, pale, blue, or flushed?",skin color,,CONTINUE
+Unconscious / Unresponsive,20,Key Questions,"Is the skin warm, cold, or sweaty?",skin temperature,,CONTINUE
+Unconscious / Unresponsive,21,Key Questions,"Does s/he have any medical conditions — diabetes, epilepsy, heart disease?",medical history,,CONTINUE
+Unconscious / Unresponsive,22,Key Questions,Does s/he wear a medical alert bracelet or necklace?,medical ID,,CONTINUE
+Unconscious / Unresponsive,23,Key Questions,Is s/he diabetic? Is there a glucometer available?,blood sugar check,,CONTINUE
+Unconscious / Unresponsive,24,Key Questions,Has s/he been ill recently?,recent illness,,CONTINUE
+Unconscious / Unresponsive,25,Key Questions,"Could s/he have been exposed to carbon monoxide, fumes, or chemicals?",toxic exposure,,CONTINUE
+Unconscious / Unresponsive,26,Key Questions,Is anyone else in the building feeling ill?,mass exposure screen,,CONTINUE
+Unconscious / Unresponsive,27,Determinant Assignment,ECHO-level: Not breathing and no pulse — cardiac arrest,no breathing AND no pulse,0,STOP
+Unconscious / Unresponsive,28,Determinant Assignment,ECHO-level: Agonal breathing only (gasping/gurgling) — treat as cardiac arrest,agonal breathing AND unresponsive,0,STOP
+Unconscious / Unresponsive,29,Determinant Assignment,"DELTA-level: Unconscious, not breathing but has a pulse — respiratory arrest",not breathing AND pulse present,1,STOP
+Unconscious / Unresponsive,30,Determinant Assignment,"DELTA-level: Unconscious with signs of major trauma — bleeding, deformity",unconscious AND major trauma,1,STOP
+Unconscious / Unresponsive,31,Determinant Assignment,"DELTA-level: Unconscious with suspected overdose — pinpoint pupils, syringes nearby",unconscious AND overdose signs,1,STOP
+Unconscious / Unresponsive,32,Determinant Assignment,DELTA-level: Unconscious after sudden collapse — suspected cardiac event,sudden collapse AND unconscious,1,STOP
+Unconscious / Unresponsive,33,Determinant Assignment,"CHARLIE-level: Unconscious but breathing normally, responds to pain",unconscious AND breathing AND pain response,2,CONTINUE
+Unconscious / Unresponsive,34,Determinant Assignment,CHARLIE-level: Unconscious diabetic — possible hypoglycemia,unconscious AND diabetic,2,CONTINUE
+Unconscious / Unresponsive,35,Determinant Assignment,"CHARLIE-level: Postictal state after witnessed seizure, breathing",postictal AND breathing,2,CONTINUE
+Unconscious / Unresponsive,36,Determinant Assignment,"BRAVO-level: Altered consciousness — responds to voice, confused, not fully alert",responds to voice AND confused,3,CONTINUE
+Unconscious / Unresponsive,37,Determinant Assignment,"BRAVO-level: Fainting episode, now regaining consciousness, oriented",syncope AND recovering,3,CONTINUE
+Unconscious / Unresponsive,38,Determinant Assignment,"ALPHA-level: Brief fainting, now fully alert, oriented, no injury",brief syncope AND fully alert AND no injury,4,CONTINUE
+Unconscious / Unresponsive,39,Determinant Assignment,"ALPHA-level: Near-syncope, did not fully lose consciousness, stable",near-syncope AND stable,4,CONTINUE
+Unconscious / Unresponsive,40,Determinant Assignment,"OMEGA-level: Vasovagal episode with clear trigger, fully recovered, no cardiac history",vasovagal AND recovered AND no cardiac history,5,CONTINUE
+Unconscious / Unresponsive,41,Pre-Arrival Instructions,"If not breathing and no pulse: begin CPR immediately. Place the heel of your hand on the center of the chest. Push hard and fast — at least 2 inches deep, 100-120 pushes per minute.",cardiac arrest,0,STOP
+Unconscious / Unresponsive,42,Pre-Arrival Instructions,"After 30 compressions, tilt the head back, lift the chin, and give 2 breaths. Watch for the chest to rise.",cardiac arrest CPR,,CONTINUE
+Unconscious / Unresponsive,43,Pre-Arrival Instructions,"If an AED is available, turn it on and follow the voice prompts. Do not stop CPR until the AED tells you to.",AED available,,CONTINUE
+Unconscious / Unresponsive,44,Pre-Arrival Instructions,If breathing but unconscious: roll the patient onto their side in the recovery position to protect the airway.,unconscious AND breathing,,CONTINUE
+Unconscious / Unresponsive,45,Pre-Arrival Instructions,"If there is vomit in the mouth, turn the head to the side and clear it with your finger.",vomit in airway,,CONTINUE
+Unconscious / Unresponsive,46,Pre-Arrival Instructions,"If you suspect an opioid overdose and have naloxone (Narcan), administer it now.",opioid overdose suspected,,CONTINUE
+Unconscious / Unresponsive,47,Pre-Arrival Instructions,Do NOT give an unconscious patient anything by mouth.,unconscious,,CONTINUE
+Unconscious / Unresponsive,48,Pre-Arrival Instructions,Keep the patient warm with a blanket.,all dispositions,,CONTINUE
+Unconscious / Unresponsive,49,Case Exit,Stay on the line. Help is on the way. Keep doing CPR if instructed — do not stop until paramedics arrive.,CPR in progress,,CONTINUE
+Unconscious / Unresponsive,50,Case Exit,"If anything changes, tell me immediately.",all dispositions,,CONTINUE
+Unconscious / Unresponsive,51,Case Exit,Do not hang up until I tell you to.,all dispositions,,CONTINUE

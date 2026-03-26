@@ -1,0 +1,50 @@
+protocol_name,row_number,module_name,question_text,condition,disposition,stop_rule
+Falls / Traumatic Injury,1,Case Entry,Verify the address of the emergency. What is the exact address?,initial contact,,CONTINUE
+Falls / Traumatic Injury,2,Case Entry,What is the callback number you are calling from?,initial contact,,CONTINUE
+Falls / Traumatic Injury,3,Case Entry,Tell me exactly what happened.,initial contact,,CONTINUE
+Falls / Traumatic Injury,4,Case Entry,How old is the patient?,initial contact,,CONTINUE
+Falls / Traumatic Injury,5,Case Entry,Is the scene safe for you to approach?,scene safety,,CONTINUE
+Falls / Traumatic Injury,6,Key Questions,Is s/he conscious?,consciousness check,,CONTINUE
+Falls / Traumatic Injury,7,Key Questions,Is s/he breathing normally?,breathing check,,CONTINUE
+Falls / Traumatic Injury,8,Key Questions,How far did s/he fall? What surface did s/he land on?,mechanism of injury,,CONTINUE
+Falls / Traumatic Injury,9,Key Questions,"Did s/he fall from a standing height, or from an elevated surface like a ladder or roof?",fall height,,CONTINUE
+Falls / Traumatic Injury,10,Key Questions,What part of the body hit first?,impact point,,CONTINUE
+Falls / Traumatic Injury,11,Key Questions,Did s/he hit the head?,head injury,,CONTINUE
+Falls / Traumatic Injury,12,Key Questions,"Did s/he lose consciousness at any point, even briefly?",LOC assessment,,CONTINUE
+Falls / Traumatic Injury,13,Key Questions,Is s/he confused or not making sense?,altered mental status,,CONTINUE
+Falls / Traumatic Injury,14,Key Questions,Is there any bleeding? Where and how much?,hemorrhage assessment,,CONTINUE
+Falls / Traumatic Injury,15,Key Questions,Is the bleeding controlled or still actively flowing?,hemorrhage control,,CONTINUE
+Falls / Traumatic Injury,16,Key Questions,Can s/he move all arms and legs?,motor function,,CONTINUE
+Falls / Traumatic Injury,17,Key Questions,Does s/he have any numbness or tingling in the arms or legs?,neurological symptoms,,CONTINUE
+Falls / Traumatic Injury,18,Key Questions,Is there pain in the neck or back?,spinal pain,,CONTINUE
+Falls / Traumatic Injury,19,Key Questions,Is there any obvious deformity to any limb? Does anything look bent wrong?,deformity assessment,,CONTINUE
+Falls / Traumatic Injury,20,Key Questions,Is there swelling at the injury site?,swelling,,CONTINUE
+Falls / Traumatic Injury,21,Key Questions,Can s/he bear weight or stand?,weight bearing,,CONTINUE
+Falls / Traumatic Injury,22,Key Questions,Is s/he on blood thinners like warfarin or Eliquis?,anticoagulant use,,CONTINUE
+Falls / Traumatic Injury,23,Key Questions,"Does s/he have any medical conditions — diabetes, seizures, or a heart condition?",medical history,,CONTINUE
+Falls / Traumatic Injury,24,Key Questions,Did s/he faint or feel dizzy before the fall?,pre-fall symptoms,,CONTINUE
+Falls / Traumatic Injury,25,Key Questions,Has s/he vomited since the fall?,post-injury vomiting,,CONTINUE
+Falls / Traumatic Injury,26,Key Questions,Is there any fluid coming from the ears or nose?,CSF leak,,CONTINUE
+Falls / Traumatic Injury,27,Determinant Assignment,ECHO-level: Unconscious and not breathing after fall,unconscious AND not breathing,0,STOP
+Falls / Traumatic Injury,28,Determinant Assignment,DELTA-level: Unconscious after fall from significant height,unconscious AND fall > 6 feet,1,STOP
+Falls / Traumatic Injury,29,Determinant Assignment,DELTA-level: Uncontrolled hemorrhage — blood pooling or spurting,uncontrolled hemorrhage,1,STOP
+Falls / Traumatic Injury,30,Determinant Assignment,DELTA-level: Suspected spinal injury with neurological deficit,spinal pain AND numbness/tingling OR motor deficit,1,STOP
+Falls / Traumatic Injury,31,Determinant Assignment,DELTA-level: Open skull fracture or fluid from ears/nose after head impact,open skull fracture OR CSF leak,1,STOP
+Falls / Traumatic Injury,32,Determinant Assignment,"CHARLIE-level: Head injury with brief LOC, now conscious and oriented",head injury AND brief LOC AND conscious,2,CONTINUE
+Falls / Traumatic Injury,33,Determinant Assignment,CHARLIE-level: Fall on blood thinners with any head impact,head impact AND anticoagulant use,2,CONTINUE
+Falls / Traumatic Injury,34,Determinant Assignment,"CHARLIE-level: Obvious long bone deformity (femur, humerus)",long bone deformity,2,CONTINUE
+Falls / Traumatic Injury,35,Determinant Assignment,"BRAVO-level: Fall with isolated limb injury, no head or spinal involvement",limb injury AND no head/spine,3,CONTINUE
+Falls / Traumatic Injury,36,Determinant Assignment,"BRAVO-level: Elderly fall with hip pain, unable to bear weight",elderly AND hip pain AND non-weight-bearing,3,CONTINUE
+Falls / Traumatic Injury,37,Determinant Assignment,BRAVO-level: Controlled bleeding with moderate pain,controlled bleeding AND moderate pain,3,CONTINUE
+Falls / Traumatic Injury,38,Determinant Assignment,"ALPHA-level: Minor fall from standing, small abrasion or bruise, ambulatory",minor fall AND ambulatory AND minor injury,4,CONTINUE
+Falls / Traumatic Injury,39,Determinant Assignment,"ALPHA-level: Isolated ankle or wrist injury, no deformity, mild swelling",isolated extremity AND mild swelling AND no deformity,4,CONTINUE
+Falls / Traumatic Injury,40,Determinant Assignment,"OMEGA-level: Fall with no injury, no pain, no head impact, fully ambulatory",no injury AND no pain AND ambulatory,5,CONTINUE
+Falls / Traumatic Injury,41,Pre-Arrival Instructions,Do NOT move the patient if there is any possibility of a neck or back injury.,suspected spinal injury,,CONTINUE
+Falls / Traumatic Injury,42,Pre-Arrival Instructions,"If there is serious bleeding, apply firm direct pressure with a clean cloth. Do not remove the cloth — add more on top if it soaks through.",active hemorrhage,,CONTINUE
+Falls / Traumatic Injury,43,Pre-Arrival Instructions,"If a limb looks deformed, do not try to straighten it. Keep it still and supported.",deformity present,,CONTINUE
+Falls / Traumatic Injury,44,Pre-Arrival Instructions,"If the patient hit their head, do not let them fall asleep. Keep talking to them.",head injury,,CONTINUE
+Falls / Traumatic Injury,45,Pre-Arrival Instructions,"Apply ice wrapped in a cloth to any swollen area. 20 minutes on, 20 minutes off.",swelling present,,CONTINUE
+Falls / Traumatic Injury,46,Pre-Arrival Instructions,"If the patient becomes unconscious and stops breathing, begin CPR.",patient becomes unresponsive,,ELEVATE
+Falls / Traumatic Injury,47,Pre-Arrival Instructions,Keep the patient warm with a blanket. Do not give food or drink.,all dispositions,,CONTINUE
+Falls / Traumatic Injury,48,Case Exit,Stay on the line. Help is on the way.,dispatch confirmed,,CONTINUE
+Falls / Traumatic Injury,49,Case Exit,"If anything changes — if s/he becomes confused, starts vomiting, or stops breathing — call us back immediately.",all dispositions,,CONTINUE
