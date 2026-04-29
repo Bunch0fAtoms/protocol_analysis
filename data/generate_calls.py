@@ -901,7 +901,14 @@ def generate_call(call_num, protocol_name, is_ambiguous=False, is_insufficient=F
     phone = random_phone()
     addr = random_address()
     dispatch = pick_weighted(DISPATCH_TYPES, DISPATCH_WEIGHTS[protocol_name])
-    outcome = pick_weighted(OUTCOMES, OUTCOME_WEIGHTS[protocol_name])
+    # Ensure outcome is consistent with dispatch type
+    if dispatch == "no_dispatch":
+        outcome = "phone_resolved"
+    else:
+        outcome = pick_weighted(OUTCOMES, OUTCOME_WEIGHTS[protocol_name])
+        # If outcome is phone_resolved but we dispatched, pick a different outcome
+        while outcome == "phone_resolved" and dispatch != "no_dispatch":
+            outcome = pick_weighted(OUTCOMES, OUTCOME_WEIGHTS[protocol_name])
 
     qa_bank = QA_BANKS[protocol_name]
 

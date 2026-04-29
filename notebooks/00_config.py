@@ -11,7 +11,7 @@ SCHEMA = "protocol_analysis"
 VOLUME_PATH = f"/Volumes/{CATALOG}/{SCHEMA}/source_data"
 
 # Model endpoints for ai_query
-LLM_MODEL = "databricks-meta-llama-3-3-70b-instruct"
+LLM_MODEL = "databricks-gpt-5-2"
 EMBEDDING_MODEL = "databricks-bge-large-en"
 
 # Vector Search
